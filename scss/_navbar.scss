@@ -1,77 +1,100 @@
-// Base styling for the navbar
+// Styling for the navbar
 #mainNav {
-  box-shadow: $box-shadow;
-  background-color: $white;
-  transition: background-color 0.2s ease;
+  position: absolute;
+  border-bottom: 1px solid $gray-200;
+  background-color: white;
+  @include sans-serif-font;
   .navbar-brand {
-    font-family: $font-family-sans-serif;
-    font-weight: $font-weight-bold;
-    color: $gray-900;
+    font-weight: 800;
+    color: $gray-800;
+  }
+  .navbar-toggler {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 13px;
+    text-transform: uppercase;
+    color: $gray-800;
   }
   .navbar-nav {
-    .nav-item {
-      .nav-link {
-        color: $gray-600;
-        font-family: $font-family-sans-serif;
-        font-weight: $font-weight-bold;
-        font-size: 0.9rem;
-        padding: 0.75rem 0;
-        &:hover,
-        &:active {
-          color: $primary;
-        }
-        &.active {
-          color: $primary !important;
-        }
+    > li.nav-item {
+      > a {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
       }
     }
   }
-  @include media-breakpoint-up(lg) {
-    // Base styling for the navbar - screen sizes greater than the large breakpoint
-    box-shadow: none;
-    background-color: transparent;
+  @media only screen and (min-width: 992px) {
+    border-bottom: 1px solid transparent;
+    background: transparent;
     .navbar-brand {
-      color: fade-out($white, .3);
+      padding: 10px 20px;
+      color: $white;
+      &:focus,
       &:hover {
-        color: $white;
+        color: fade-out($white, .2);
       }
     }
     .navbar-nav {
-      .nav-item {
-        .nav-link {
-          color: fade-out($white, .3);
-          padding: 0 1rem;
+      > li.nav-item {
+        > a {
+          padding: 10px 20px;
+          color: $white;
+          &:focus,
           &:hover {
-            color: $white;
-          }
-        }
-        &:last-child {
-          .nav-link {
-            padding-right: 0;
+            color: fade-out($white, .2);
           }
         }
       }
     }
-    // Navbar styling applied when the page is scrolled
-    &.navbar-scrolled {
-      box-shadow: $box-shadow;
-      background-color: $white;
+  }
+  @media only screen and (min-width: 992px) {
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    &.is-fixed {
+      /* when the user scrolls down, we hide the header right above the viewport */
+      position: fixed;
+      top: -67px;
+      -webkit-transition: -webkit-transform 0.2s;
+      -moz-transition: -moz-transform 0.2s;
+      transition: transform 0.2s;
+      border-bottom: 1px solid darken($white, .05);
+      background-color: fade-out($white, .1);
       .navbar-brand {
         color: $gray-900;
+        &:focus,
         &:hover {
           color: $primary;
         }
       }
       .navbar-nav {
-        .nav-item {
-          .nav-link {
+        > li.nav-item {
+          > a {
             color: $gray-900;
+            &:focus,
             &:hover {
               color: $primary;
             }
           }
         }
       }
+    }
+    &.is-visible {
+      /* if the user changes the scrolling direction, we show the header */
+      -webkit-transform: translate3d(0, 100%, 0);
+      -moz-transform: translate3d(0, 100%, 0);
+      -ms-transform: translate3d(0, 100%, 0);
+      -o-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
     }
   }
 }

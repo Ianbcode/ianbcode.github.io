@@ -1,6 +1,6 @@
-# [ianbcode - A Clean Blog]
+# ianbcode.github.io - my blog website
 
-A clean blog website designed to show my intereset, my projects, as well as who I am. 
+A clean blog website designed to show my intereset, my projects, as well as who I am to anyone that may be interested. 
 
 ## Copyright and License
 
